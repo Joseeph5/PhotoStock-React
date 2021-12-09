@@ -2,14 +2,12 @@ import React from 'react';
 import { useGlobalContext } from './Context';
 import Photo from './Photo';
 export default function PhotosList() {
-  const { photos, loading } = useGlobalContext();
+  const { photos, loading, loadMoreData } = useGlobalContext();
 
   if (loading) {
     return (
       <section className='photos'>
-        <div className='photos-center'>
-          <h3>Loading...</h3>
-        </div>
+        <div className='loading'></div>
       </section>
     );
   }
@@ -20,6 +18,7 @@ export default function PhotosList() {
           return <Photo key={photo.id} {...photo} />;
         })}
       </div>
+      {loadMoreData && <div className='loading'></div>}
     </section>
   );
 }

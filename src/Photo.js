@@ -27,6 +27,15 @@ export default function Photo({
           console.log('show modal', id);
         }}
       />
+      <div className='photo-info'>
+        <div>
+          <h4>{name}</h4>
+          <p>{likes} likes</p>
+        </div>
+        <a href={portfolio_url} target='_blank' rel='noreferrer'>
+          <img src={medium} alt='profile_image' className='user-img' />
+        </a>
+      </div>
 
       <Modal
         show={show}
@@ -45,15 +54,6 @@ export default function Photo({
         </Modal.Body>
         <Modal.Footer></Modal.Footer>
       </Modal>
-      <div className='photo-info'>
-        <div>
-          <h4>{name}</h4>
-          <p>{likes} likes</p>
-        </div>
-        <a href={portfolio_url}>
-          <img src={medium} alt='' className='user-img' />
-        </a>
-      </div>
     </div>
   );
 }

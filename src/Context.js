@@ -10,26 +10,71 @@ const clientID = `?client_id=${process.env.REACT_APP_ACCESS_KEY}`;
 export default function AppProvider({ children }) {
   const [loading, setLoading] = useState(true);
   const [photos, setPhotos] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [page, setPage] = useState(1);
+  const [loadMoreData, setLoadMoreData] = useState(false);
 
-  const fetchPhotos = async (url, clientID) => {
+  const fetchPhotos = async (url, clientID, page) => {
+    const pageUrl = `&page=${page}`;
+
     try {
-      const response = await fetch(url + clientID);
+      const response = await fetch(url + clientID + pageUrl);
       const data = await response.json();
-      setPhotos(data);
-      setLoading(false);
-      console.log(data);
+      if (Array.isArray(data)) {
+        setPhotos((oldPhotos) => {
+          console.log([...oldPhotos, ...data]);
+          return [...oldPhotos, ...data];
+        });
+        setLoading(false);
+      }
     } catch (error) {
       console.log(error);
     }
   };
 
+  const searchPhotos = async (url, clientID, page, search) => {
+    setLoading(true);
+    const pageUrl = `&page=${page}`;
+    const searchUrl = `&query=${search}`;
+    try {
+      const response = await fetch(url + clientID + pageUrl + searchUrl);
+      const data = await response.json();
+      if (Array.isArray(data)) {
+        setPhotos(data);
+        setLoading(false);
+      }
+    } catch (error) {
+      console.log('error when fetching data...');
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
-    fetchPhotos(mainUrl, clientID);
-    setTimeout(() => {}, 1000);
-  }, []);
+    setLoadMoreData(true);
+    if (searchTerm) {
+      searchPhotos(mainUrl, clientID, page, searchTerm);
+    } else {
+      fetchPhotos(mainUrl, clientID, page);
+    }
+    setTimeout(() => {
+      setLoadMoreData(false);
+    }, 1000);
+  }, [searchTerm, page]);
 
   return (
-    <AppContext.Provider value={{ photos, loading }}>{children}</AppContext.Provider>
+    <AppContext.Provider
+      value={{
+        photos,
+        loading,
+        searchPhotos,
+        searchTerm,
+        setSearchTerm,
+        setPage,
+        page,
+        loadMoreData,
+      }}>
+      {children}
+    </AppContext.Provider>
   );
 }
 
