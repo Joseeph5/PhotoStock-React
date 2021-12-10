@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useGlobalContext } from './Context';
 import PhotosList from './PhotosList';
 import SearchForm from './SearchForm';
+import ToggleButton from './ToggleButton';
 
 function App() {
   const { setPage, loadMoreData } = useGlobalContext();
@@ -23,9 +24,16 @@ function App() {
     return () => {
       window.removeEventListener(ScrollEvent);
     };
+    // eslint-disable-next-line
   }, []);
   return (
     <main>
+      <nav className='nav-center'>
+        <h2>React Stock</h2>
+        <div>
+          <ToggleButton />
+        </div>
+      </nav>
       <SearchForm />
       <PhotosList />
     </main>

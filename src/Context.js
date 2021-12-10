@@ -11,7 +11,7 @@ export default function AppProvider({ children }) {
   const [loading, setLoading] = useState(true);
   const [photos, setPhotos] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
-  const [page, setPage] = useState(0);
+  const [page, setPage] = useState(1);
   const [loadMoreData, setLoadMoreData] = useState(false);
 
   const fetchPhotos = async (url, clientID, page) => {

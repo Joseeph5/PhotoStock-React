@@ -1,5 +1,4 @@
-import React, { useRef, useState } from 'react';
-import { FaSearch } from 'react-icons/fa';
+import React, { useRef } from 'react';
 import { useGlobalContext } from './Context';
 
 export default function SearchForm() {
@@ -8,8 +7,10 @@ export default function SearchForm() {
 
   const submitHandler = (e) => {
     e.preventDefault();
+    if (!termType.current.value) {
+      return;
+    }
     setLoading(true);
-    console.log(termType.current.value);
     setPage(1);
     setSearchTerm(termType.current.value);
   };
