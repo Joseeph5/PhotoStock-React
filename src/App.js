@@ -26,10 +26,8 @@ function App() {
   }, []);
   return (
     <main>
-      <div>
-        <SearchForm />
-        <PhotosList />
-      </div>
+      <SearchForm />
+      <PhotosList />
     </main>
   );
 }

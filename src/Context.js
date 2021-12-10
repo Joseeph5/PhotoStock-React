@@ -11,7 +11,7 @@ export default function AppProvider({ children }) {
   const [loading, setLoading] = useState(true);
   const [photos, setPhotos] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(0);
   const [loadMoreData, setLoadMoreData] = useState(false);
 
   const fetchPhotos = async (url, clientID, page) => {
@@ -21,9 +21,12 @@ export default function AppProvider({ children }) {
       const response = await fetch(url + clientID + pageUrl);
       const data = await response.json();
       if (Array.isArray(data)) {
-        setPhotos((oldPhotos) => {
-          console.log([...oldPhotos, ...data]);
-          return [...oldPhotos, ...data];
+        setPhotos((oldValues) => {
+          if (page === 1) {
+            return data;
+          } else {
+            return [...oldValues, ...data];
+          }
         });
         setLoading(false);
       }
@@ -33,14 +36,20 @@ export default function AppProvider({ children }) {
   };
 
   const searchPhotos = async (url, clientID, page, search) => {
-    setLoading(true);
     const pageUrl = `&page=${page}`;
     const searchUrl = `&query=${search}`;
+
     try {
       const response = await fetch(url + clientID + pageUrl + searchUrl);
       const data = await response.json();
-      if (Array.isArray(data)) {
-        setPhotos(data);
+      if (Array.isArray(data.results)) {
+        setPhotos((oldValues) => {
+          if (page === 1) {
+            return data.results;
+          } else {
+            return [...oldValues, ...data.results];
+          }
+        });
         setLoading(false);
       }
     } catch (error) {
@@ -51,11 +60,13 @@ export default function AppProvider({ children }) {
 
   useEffect(() => {
     setLoadMoreData(true);
-    if (searchTerm) {
-      searchPhotos(mainUrl, clientID, page, searchTerm);
-    } else {
-      fetchPhotos(mainUrl, clientID, page);
-    }
+    setTimeout(() => {
+      if (searchTerm) {
+        searchPhotos(searchUrl, clientID, page, searchTerm);
+      } else {
+        fetchPhotos(mainUrl, clientID, page);
+      }
+    }, 500);
     setTimeout(() => {
       setLoadMoreData(false);
     }, 1000);
@@ -66,6 +77,7 @@ export default function AppProvider({ children }) {
       value={{
         photos,
         loading,
+        setLoading,
         searchPhotos,
         searchTerm,
         setSearchTerm,

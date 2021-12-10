@@ -141,12 +141,18 @@ Stock Photos
 .search {
   padding: 5rem 0 0 0;
   width: 90vw;
-  max-width: 700px;
   margin: 0 auto;
   text-align: center;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  background: var(--clr-white);
+  z-index: 2;
 }
 .search-form {
-  display: flex;
+  max-width: 800px;
+  margin: 0 auto;
+  padding-bottom: 30px;
 }
 .form-input {
   width: 100%;
@@ -169,7 +175,7 @@ Stock Photos
   color: var(--clr-grey-5);
 }
 .photos {
-  padding: 5rem 0;
+  position: relative;
 }
 .photos-center {
   width: 90vw;
@@ -238,7 +244,7 @@ Stock Photos
     grid-template-columns: repeat(auto-fill, minmax(368px, 1fr));
   }
   .search-form {
-    max-width: var(--fixed-width);
+    max-width: 800px;
   }
 }
 
