@@ -222,17 +222,16 @@ Stock Photos
   cursor: pointer;
 }
 
-.modalImg {
+.modal-img {
   width: 100vw;
   max-width: 419px;
   margin: 0 auto;
 
   /* text-align: center; */
 }
-.modalImg img {
+.modal-img img {
   width: 100%;
   height: 700px;
-
   object-fit: cover;
 }
 .photo h4 {
@@ -270,6 +269,13 @@ Stock Photos
   }
   .search-form {
     max-width: 800px;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .modal-img img {
+    width: 87%;
+    height: 700px;
   }
 }
 

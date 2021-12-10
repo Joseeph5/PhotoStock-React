@@ -48,7 +48,7 @@ export default function Photo({
           </a>
         </Modal.Header>
         <Modal.Body>
-          <div className='modalImg'>
+          <div className='modal-img'>
             <img src={regular} alt={alt_description} />
           </div>
         </Modal.Body>
