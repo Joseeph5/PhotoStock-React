@@ -42,17 +42,17 @@ export default function Photo({
         onHide={handleClose}
         size='lg'
         aria-labelledby='contained-modal-title-vcenter'>
-        <Modal.Header closeButton>
+        <Modal.Header closeButton className='modal-container'>
           <a href={full} target='_blank' rel='noreferrer'>
             <Button variant='success'>Download</Button>
           </a>
         </Modal.Header>
-        <Modal.Body>
+        <Modal.Body className='modal-container'>
           <div className='modal-img'>
             <img src={regular} alt={alt_description} />
           </div>
         </Modal.Body>
-        <Modal.Footer></Modal.Footer>
+        <Modal.Footer className='modal-container'></Modal.Footer>
       </Modal>
     </div>
   );

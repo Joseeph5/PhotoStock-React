@@ -194,7 +194,7 @@ Stock Photos
   border-bottom: 3px solid var(--clr-font);
 }
 .form-input {
-  color: var(--clr-grey-3);
+  color: var(--clr-font);
 }
 .form-input::placeholder {
   color: var(--clr-font);
@@ -207,7 +207,7 @@ Stock Photos
   max-width: var(--max-width);
   margin: 0 auto;
   display: grid;
-  gap: 2rem;
+  gap: 1rem;
 }
 .photo {
   /* height: 17.5rem; */
@@ -278,7 +278,9 @@ Stock Photos
     height: 700px;
   }
 }
-
+.modal-container {
+  background: var(--clr-bcg);
+}
 /*
 =============== 
 Loading
