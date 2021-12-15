@@ -52,7 +52,15 @@ export default function Photo({
             <img src={regular} alt={alt_description} />
           </div>
         </Modal.Body>
-        <Modal.Footer className='modal-container'></Modal.Footer>
+        <Modal.Footer className='modal-container modal-info'>
+          <div>
+            <a href={portfolio_url} target='_blank' rel='noreferrer'>
+              <img src={medium} alt='profile_image' />
+            </a>
+            <h4>{name}</h4>
+            <p>{likes} likes</p>
+          </div>
+        </Modal.Footer>
       </Modal>
     </div>
   );

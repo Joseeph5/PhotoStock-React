@@ -12,7 +12,6 @@ const getStorageTheme = () => {
 };
 
 export default function ToggleButton() {
-  console.log(getStorageTheme().theme);
   const [theme, setTheme] = useState(getStorageTheme().theme);
   const [ballPosition, setBallPosition] = useState(getStorageTheme().ballPosition);
 
@@ -33,15 +32,13 @@ export default function ToggleButton() {
   }, [theme, ballPosition]);
 
   return (
-    <div className='container night-mode-available'>
-      <div className='night-mode-button'>
-        <div className={ballPosition} onClick={themeToggle}>
-          <label htmlFor='toggle' className='label'>
-            <i className='fas fa-moon'></i>
-            <i className='fas fa-sun'></i>
-            <div className='blob'></div>
-          </label>
-        </div>
+    <div>
+      <div className={ballPosition} onClick={themeToggle}>
+        <label htmlFor='toggle' className='label'>
+          <i className='fas fa-moon'></i>
+          <i className='fas fa-sun'></i>
+          <div className='blob'></div>
+        </label>
       </div>
     </div>
   );

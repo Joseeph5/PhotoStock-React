@@ -13,6 +13,7 @@ export default function AppProvider({ children }) {
   const [searchTerm, setSearchTerm] = useState('');
   const [page, setPage] = useState(1);
   const [loadMoreData, setLoadMoreData] = useState(false);
+  const [newPhotos, setNewPhotos] = useState(false);
 
   const fetchPhotos = async (url, clientID, page) => {
     const pageUrl = `&page=${page}`;
@@ -29,6 +30,7 @@ export default function AppProvider({ children }) {
           }
         });
         setLoading(false);
+        setNewPhotos(false);
       }
     } catch (error) {
       console.log(error);
@@ -51,6 +53,7 @@ export default function AppProvider({ children }) {
           }
         });
         setLoading(false);
+        setNewPhotos(false);
       }
     } catch (error) {
       console.log('error when fetching data...');
@@ -59,14 +62,13 @@ export default function AppProvider({ children }) {
   };
 
   useEffect(() => {
-    setLoadMoreData(true);
     setTimeout(() => {
       if (searchTerm) {
         searchPhotos(searchUrl, clientID, page, searchTerm);
       } else {
         fetchPhotos(mainUrl, clientID, page);
       }
-    }, 500);
+    }, 300);
     setTimeout(() => {
       setLoadMoreData(false);
     }, 1000);
@@ -84,6 +86,9 @@ export default function AppProvider({ children }) {
         setPage,
         page,
         loadMoreData,
+        setLoadMoreData,
+        newPhotos,
+        setNewPhotos,
       }}>
       {children}
     </AppContext.Provider>

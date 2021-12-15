@@ -81,6 +81,10 @@ ul {
 }
 a {
   text-decoration: none;
+  margin-bottom: 0.75rem;
+}
+img {
+  margin-bottom: 0.75rem;
 }
 h1,
 h2,
@@ -234,6 +238,12 @@ Stock Photos
   height: 700px;
   object-fit: cover;
 }
+.modal-info {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
 .photo h4 {
   margin-bottom: 0.5rem;
 }
@@ -280,6 +290,7 @@ Stock Photos
 }
 .modal-container {
   background: var(--clr-bcg);
+  color: var(--clr-font);
 }
 /*
 =============== 
