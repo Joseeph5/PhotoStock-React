@@ -2,7 +2,9 @@
 
 ## This project is under development.
 
-  <img src="./public/images/1.png" href="https://joseph-photostock.netlify.app/" alt="Photo Stock">
+<a href="https://joseph-photostock.netlify.app/">
+  <img src="./public/images/1.png" alt="Photo Stock">
+</a>
 
 ### About
 
